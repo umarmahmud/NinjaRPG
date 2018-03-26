@@ -20,7 +20,7 @@ public class Ronin extends Character{
     
     @Override
     public void attack(Character character){
-        this.setAttackModifier(1.8);
+        this.setAttackModifier(1.7);
         super.attack(character);
     }
     
@@ -32,9 +32,9 @@ public class Ronin extends Character{
     
     @Override
         public void special(Character character) {
-        // triple hit - 100% chance for 1 hit, 66% for 2 hits, 33% for 3 hits (increased modifier)
+        // triple hit - 100% chance for 1 hit, 60% for 2 hits, 20% for 3 hits (decreased modifier)
         if (this.specialActivated()){
-            this.setAttackModifier(2);
+            this.setAttackModifier(1.5);
             Random random = new Random();
             int prob = 100;
             for (int i = 0; i < 3; i++){

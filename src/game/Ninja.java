@@ -19,13 +19,13 @@ public class Ninja extends Character{
     
     @Override
     public void attack(Character character){
-        this.setAttackModifier(1.2);
+        this.setAttackModifier(1.4);
         super.attack(character);
     }
     
     @Override
     public void healUp(){
-        this.setHealUpModifier(1.5);
+        this.setHealUpModifier(1.4);
         super.healUp();
     }
     

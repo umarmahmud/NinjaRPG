@@ -25,7 +25,7 @@ public class Ninja extends Character{
     
     @Override
     public void healUp(){
-        this.setHealUpModifier(.9);
+        this.setHealUpModifier(20);
         super.healUp();
     }
     

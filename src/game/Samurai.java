@@ -25,7 +25,7 @@ public class Samurai extends Character {
     
     @Override
     public void healUp(){
-        this.setHealUpModifier(.5);
+        this.setHealUpModifier(20);
         super.healUp();
     }
     
@@ -42,6 +42,7 @@ public class Samurai extends Character {
             }
             prob -= 33;
         }
+        this.setCounter(this.getCounter() - 1);
     }
 
 }

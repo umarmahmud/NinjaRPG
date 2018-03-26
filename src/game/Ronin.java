@@ -26,7 +26,7 @@ public class Ronin extends Character{
     
     @Override
     public void healUp(){
-        this.setHealUpModifier(.45);
+        this.setHealUpModifier(20);
         super.healUp();
     }
     
@@ -34,6 +34,7 @@ public class Ronin extends Character{
     public void special(Character character) {
         // to-do
         super.attack(character);
+        this.setCounter(this.getCounter() - 1);
     }
     
 }

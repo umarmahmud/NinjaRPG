@@ -5,23 +5,20 @@
  */
 package game;
 
+import java.util.Random;
+
 /**
  *
  * @author Umar
  */
 public abstract class Character {
-    /*
-    public enum Disposition{
-        GOOD, EVIL
-    }
-    */
+    
     private double health = 100;
     private boolean alive = true;
-    private double attackModifier;
-    private double healUpModifier;
+    private double attackModifier = 1;
+    private double healUpModifier = 1;
     private int healthFood = 3;
     private int counter = 1;
-    public static boolean gameOver = false;
     
     public void setHealth(double health){
         this.health = health;
@@ -69,17 +66,24 @@ public abstract class Character {
     public void setCounter(int counter) {
         this.counter = counter;
     }
+   
+    // composition over inheritance
     
-    /*
-    public Disposition getDisposition() {
-        return disposition;
+    public void attack(Character character){
+        Random random = new Random();
+        character.health = (character.health - (random.nextDouble() * 10 * this.attackModifier));
     }
-
-    public void setDisposition(Disposition disposition) {
-        this.disposition = disposition;
+    
+    public void healUp(){
+        if (this.healthFood != 0){
+            Random random = new Random();
+            this.health = (this.health + (random.nextDouble() * 10 * this.healUpModifier));
+            this.healthFood -= 1;
+        }else
+        {
+            System.out.println("Oh no, out of powerups!");
+        }
     }
-    */
-    abstract void attack(Character character);
-    abstract void healUp(Character character);
+    
     abstract void special(Character character);
 }

@@ -11,32 +11,24 @@ import java.util.Random;
  *
  * @author Umar
  */
-public class Warrior extends Character {
+public class Samurai extends Character {
 
-    public Warrior() {
+    public Samurai() {
         super();
     }
-
+    
     @Override
-    public void attack(Character character) {
-        this.setAttackModifier(1.8);
-        Random random = new Random();
-        character.setHealth(character.getHealth() - (random.nextDouble() * 10 * this.getAttackModifier()));
+    public void attack(Character character){
+        this.setAttackModifier(5);
+        super.attack(character);
     }
-
+    
     @Override
-    public void healUp(Character character){
-        if (this.getHealthFood() != 0){
-            this.setHealUpModifier(.25);
-            Random random = new Random();
-            this.setHealth(this.getHealth() + (random.nextDouble() * 10 * this.getHealUpModifier()));
-            this.setHealthFood(this.getHealthFood() - 1);
-        }else
-        {
-            System.out.println("Oh no, out of powerups!");
-        }
+    public void healUp(){
+        this.setHealUpModifier(.5);
+        super.healUp();
     }
-
+    
     @Override
     public void special(Character character) {
         // triple hit - 100% chance for 1 hit, 66% for 2 hits, 33% for 3 hits

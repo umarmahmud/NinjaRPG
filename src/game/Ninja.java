@@ -16,25 +16,17 @@ public class Ninja extends Character{
     public Ninja(){
         super();
     }
-            
+    
     @Override
     public void attack(Character character){
-        this.setAttackModifier(1.5);
-        Random random = new Random();
-        character.setHealth(character.getHealth() - (random.nextDouble() * 10 * this.getAttackModifier()));
+        this.setAttackModifier(2);
+        super.attack(character);
     }
     
     @Override
-    public void healUp(Character character){
-        if (this.getHealthFood() != 0){
-            this.setHealUpModifier(.45);
-            Random random = new Random();
-            this.setHealth(this.getHealth() + (random.nextDouble() * 10 * this.getHealUpModifier()));
-            this.setHealthFood(this.getHealthFood() - 1);
-        }else
-        {
-            System.out.println("Oh no, out of powerups!");
-        }
+    public void healUp(){
+        this.setHealUpModifier(.9);
+        super.healUp();
     }
     
     @Override

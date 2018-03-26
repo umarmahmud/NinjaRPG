@@ -19,30 +19,31 @@ public class Samurai extends Character {
     
     @Override
     public void attack(Character character){
-        this.setAttackModifier(5);
+        this.setAttackModifier(1.5);
         super.attack(character);
     }
     
     @Override
     public void healUp(){
-        this.setHealUpModifier(20);
+        this.setHealUpModifier(1.2);
         super.healUp();
     }
     
     @Override
-    public void special(Character character) {
-        // triple hit - 100% chance for 1 hit, 66% for 2 hits, 33% for 3 hits
-        Random random = new Random();
-        int prob = 100;
-        for (int i = 0; i < 3; i++){
-            double number = random.nextDouble() * 100;
-            if (number > 0 && number <= prob){
-                this.attack(character);
-                System.out.println("hit");
-            }
-            prob -= 33;
+    public void special(Character character){
+        // attack oppenent with reduced attackModifier and add amount of damage to own health
+        if (this.specialActivated()){
+            this.setAttackModifier(1.1);
+            Random random = new Random();
+            double preAttack = character.getHealth();
+            super.attack(character);
+            double postAttack = character.getHealth();
+            double healthStolen = preAttack - postAttack;
+            this.setHealth(healthStolen + this.getHealth());
+            this.setCounter(this.getCounter() - 1);
+        }else
+        {
+            System.out.println("...!!!");
         }
-        this.setCounter(this.getCounter() - 1);
     }
-
 }

@@ -12,6 +12,19 @@ package game;
 public class CpuLogic {
     
     public static void cpuLogic(Character cpu, Character player){
-            cpu.attack(player);
+            if(cpu.specialActivated()){
+                cpu.special(player);
+            }
+            else if (cpu.getHealth() < 15 && cpu.getHealthFood() > 0){
+                if (player.getHealth() < 10){
+                    cpu.attack(player);
+                }
+                else{
+                    cpu.healUp();
+                }
+            }
+            else{
+                cpu.attack(player);
+            }
     }
-} 
+}

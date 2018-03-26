@@ -19,31 +19,28 @@ public class Ninja extends Character{
     
     @Override
     public void attack(Character character){
-        this.setAttackModifier(2);
+        this.setAttackModifier(1.2);
         super.attack(character);
     }
     
     @Override
     public void healUp(){
-        this.setHealUpModifier(20);
+        this.setHealUpModifier(1.5);
         super.healUp();
     }
     
     @Override
-    public void special(Character character){
-        // attack oppenent with reduced attackModifier and add amount of damage to own health
-        if (this.getHealth() < 30 && this.getCounter() != 0){
-            this.setAttackModifier(1.8);
-            Random random = new Random();
-            double preAttack = character.getHealth();
-            character.setHealth(character.getHealth() - (random.nextDouble() * 10 * this.getAttackModifier()));
-            double postAttack = character.getHealth();
-            double healthStolen = preAttack - postAttack;
-            this.setHealth(healthStolen + this.getHealth());
+        public void special(Character character) {
+        // heal with increased healUp modifier (increase dependent on health)
+        if (this.specialActivated()){
+            if(this.getHealth() < 20){
+                this.setHealUpModifier(3);
+            }
+            else{
+                this.setHealUpModifier(2.8);
+            }
+            super.healUp();
             this.setCounter(this.getCounter() - 1);
-        }else
-        {
-            System.out.println("...!!!");
         }
     }
 }

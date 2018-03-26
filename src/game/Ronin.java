@@ -20,21 +20,32 @@ public class Ronin extends Character{
     
     @Override
     public void attack(Character character){
-        this.setAttackModifier(3);
+        this.setAttackModifier(1.8);
         super.attack(character);
     }
     
     @Override
     public void healUp(){
-        this.setHealUpModifier(20);
+        this.setHealUpModifier(.9);
         super.healUp();
     }
     
     @Override
-    public void special(Character character) {
-        // to-do
-        super.attack(character);
-        this.setCounter(this.getCounter() - 1);
+        public void special(Character character) {
+        // triple hit - 100% chance for 1 hit, 66% for 2 hits, 33% for 3 hits (increased modifier)
+        if (this.specialActivated()){
+            this.setAttackModifier(2);
+            Random random = new Random();
+            int prob = 100;
+            for (int i = 0; i < 3; i++){
+                double number = random.nextDouble() * 100;
+                if (number > 0 && number <= prob){
+                    super.attack(character);
+                    System.out.println("hit");
+                }
+                prob -= 40;
+            }
+            this.setCounter(this.getCounter() - 1);
+        }
     }
-    
 }

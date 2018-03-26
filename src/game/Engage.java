@@ -69,10 +69,7 @@ public class Engage {
             switch (option) {
                 case "1":
                     player.attack(cpu);
-                    System.out.println(cpu.getHealth());
-                    System.out.println(player.getHealth());
                     break;
-                
                 case "2":
                     player.healUp();
                     break;
@@ -80,19 +77,27 @@ public class Engage {
                     player.special(cpu);
                     break;
             }
-            
+
             // CPU's turn
             CpuLogic.cpuLogic(cpu, player);
             
-            // Print result
+            System.out.println("CPU health: " + cpu.getHealth());
+            System.out.println("Player health: " + player.getHealth());
+            
             if (!cpu.isAlive()){
                 System.out.println("You win!");
+                break;
             }
             else if (!player.isAlive())
             {
                 System.out.println("You lose!");
+                break;
             }
             
+            /*
+            System.out.println("CPU health: " + cpu.getHealth());
+            System.out.println("Player health: " + player.getHealth());
+            */
         }
     }
     

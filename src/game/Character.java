@@ -66,6 +66,13 @@ public abstract class Character {
     public void setCounter(int counter) {
         this.counter = counter;
     }
+    
+    public boolean specialActivated(){
+        if (this.health < 30 && this.counter > 0){
+            return true;
+        }
+        return false;
+    }
    
     // composition over inheritance
     
@@ -75,7 +82,7 @@ public abstract class Character {
     }
     
     public void healUp(){
-        if (this.healthFood != 0){
+        if (this.healthFood > 0){
             Random random = new Random();
             this.health = (this.health + (random.nextDouble() * 10 * this.healUpModifier));
             this.healthFood -= 1;

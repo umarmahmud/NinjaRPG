@@ -64,7 +64,21 @@ public class Engage {
             
             // Player's turn
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Choose an option: 1. attack 2. heal 3. special");
+            
+            if (player.specialActivated() && player.getHealthFood() > 0){
+                System.out.println("Choose an option: 1. attack 2. heal 3. special");
+            }
+            else if (player.specialActivated() && player.getHealthFood() == 0){
+                System.out.println("Choose an option: 1. attack 3. special");
+            }
+            else if (player.getHealthFood() > 0){
+                System.out.println("Choose an option: 1. attack 2. heal");
+            }
+            else{
+                System.out.println("Choose an option: 1. attack");
+                // continue statement for auto execution
+            }
+           
             String option = scanner.nextLine();
             switch (option) {
                 case "1":
@@ -81,24 +95,24 @@ public class Engage {
             // CPU's turn
             CpuLogic.cpuLogic(cpu, player);
             
-            System.out.println("CPU health: " + cpu.getHealth());
-            System.out.println("Player health: " + player.getHealth());
-            
+            // display health and game status
             if (!cpu.isAlive()){
+                System.out.println("CPU health: 0");
+                System.out.println("Player health: " + player.getHealth());
                 System.out.println("You win!");
                 break;
             }
             else if (!player.isAlive())
             {
+                System.out.println("CPU health: " + cpu.getHealth());
+                System.out.println("Player health: 0");
                 System.out.println("You lose!");
                 break;
             }
             
-            /*
             System.out.println("CPU health: " + cpu.getHealth());
             System.out.println("Player health: " + player.getHealth());
-            */
+            
         }
     }
-    
 }

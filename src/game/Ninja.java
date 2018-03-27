@@ -39,7 +39,11 @@ public class Ninja extends Character{
             else{
                 this.setHealUpModifier(2.8);
             }
-            super.healUp();
+            // super.healUp();
+            // no use penalty for healUp; don't use super
+            Random random = new Random();
+            this.setHealth(this.getHealth() + (random.nextDouble() * 10 * this.getHealUpModifier()));
+            
             this.setCounter(this.getCounter() - 1);
         }
     }

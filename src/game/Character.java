@@ -68,10 +68,13 @@ public abstract class Character {
     }
     
     public boolean specialActivated(){
+        /*
         if (this.health < 30 && this.counter > 0){
             return true;
         }
         return false;
+        */
+        return (this.health < 30 && this.counter > 0);
     }
    
     // composition over inheritance

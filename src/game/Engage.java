@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class Engage {
     
-     public static Character playerGen(){
+     public static Character playerGenerator(){
         // default character
         Character player = new Ninja();
         Scanner scanner = new Scanner(System.in);
@@ -35,7 +35,7 @@ public class Engage {
         return player;
     }
     
-    public static Character cpuGen(){
+    public static Character cpuGenerator(){
         // default character
         Character cpu = new Ninja();
         Random random = new Random();
@@ -55,13 +55,28 @@ public class Engage {
         return cpu;
     }
     
+    public static boolean gameOver(Character player, Character cpu){
+        return (!player.isAlive() || !cpu.isAlive());
+    }
+    
+    // method for displaying game status
+    public static void showFinalGameStatus(Character player, Character cpu) {
+        if (!cpu.isAlive()) {
+            System.out.println("CPU health: 0");
+            System.out.println("Player health: " + player.getHealth());
+            System.out.println("You win!");
+        } else {
+            System.out.println("CPU health: " + cpu.getHealth());
+            System.out.println("Player health: 0");
+            System.out.println("You lose!");
+        }
+    }
+
     public static void start(){
+        Character player = playerGenerator();
+        Character cpu = cpuGenerator();
         
-        Character player = playerGen();
-        Character cpu = cpuGen();
-        
-        while (player.isAlive() && cpu.isAlive()){
-            
+        while (!gameOver(player, cpu)){
             // Player's turn
             Scanner scanner = new Scanner(System.in);
             
@@ -91,28 +106,24 @@ public class Engage {
                     player.special(cpu);
                     break;
             }
+            
+            // perform gameOver check
+            if (gameOver(player, cpu)){
+                showFinalGameStatus(player, cpu);
+                break;
+            }
 
             // CPU's turn
             CpuLogic.cpuLogic(cpu, player);
             
-            // display health and game status
-            if (!cpu.isAlive()){
-                System.out.println("CPU health: 0");
-                System.out.println("Player health: " + player.getHealth());
-                System.out.println("You win!");
-                break;
-            }
-            else if (!player.isAlive())
-            {
-                System.out.println("CPU health: " + cpu.getHealth());
-                System.out.println("Player health: 0");
-                System.out.println("You lose!");
+            // perform gameOver check
+            if (gameOver(player, cpu)){
+                showFinalGameStatus(player, cpu);
                 break;
             }
             
             System.out.println("CPU health: " + cpu.getHealth());
             System.out.println("Player health: " + player.getHealth());
-            
         }
     }
 }

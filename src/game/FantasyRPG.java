@@ -20,8 +20,8 @@ public class FantasyRPG {
     public static void main(String[] args) {
         
         // TODO code application logic here
-        // balace attack power, healing power ans special for each character object
-        // need a callback to signal when special is ready and healup not available
+        // character balancing
+        // FIXED: bug where both cpu and player would drop to negative health
         
         Engage.start();
         

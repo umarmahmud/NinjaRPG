@@ -29,7 +29,7 @@ public class Samurai extends Character {
     
     @Override
     public void special(Character character){
-        // attack oppenent with reduced attackModifier and add amount of damage to own health
+        // attack opponent with reduced attackModifier and add amount of damage to own health
         if (this.specialActivated()){
             this.setAttackModifier(1.1);
             double preAttack = character.getHealth();
@@ -44,3 +44,4 @@ public class Samurai extends Character {
         }
     }
 }
+

@@ -13,11 +13,13 @@ import java.util.Scanner;
  * @author Umar
  */
 public class Engage {
+	
+	private static Scanner scanner = InputScanner.getInstance();
 
 	public static Character playerGenerator() {
 		// default character
 		Character player = new Ninja();
-		Scanner scanner = new Scanner(System.in);
+		
 		System.out.println("Choose a character: 1. Ninja 2. Samurai 3. Ronin");
 		String option = scanner.nextLine();
 		switch (option) {
@@ -79,8 +81,6 @@ public class Engage {
 		Character cpu = cpuGenerator();
 
 		while (!gameOver(player, cpu)) {
-			Scanner scanner = new Scanner(System.in);
-
 			// Player's turn
 			if (player.specialActivated() && player.getHealthFood() > 0) {
 				System.out.println("Choose an option: 1. attack 2. heal 3. special");
@@ -109,6 +109,7 @@ public class Engage {
 			// perform gameOver check
 			if (gameOver(player, cpu)) {
 				showFinalGameStatus(player, cpu);
+				scanner.close();
 				break;
 			}
 
@@ -118,6 +119,7 @@ public class Engage {
 			// perform gameOver check
 			if (gameOver(player, cpu)) {
 				showFinalGameStatus(player, cpu);
+				scanner.close();
 				break;
 			}
 

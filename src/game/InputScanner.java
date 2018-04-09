@@ -6,17 +6,17 @@ public class InputScanner {
 
 	// singleton scanner class
 	
-	private static Scanner _scanner;
+	private static Scanner scanner;
 	
+	// private constructor, can't create scanner object directly
 	private InputScanner() {
-		// scanner = new Scanner(System.in);
 	}
 	
 	public static Scanner getInstance() {
 		// lazy instantiation
-		if (_scanner == null) {
-		_scanner = new Scanner(System.in);
+		if (scanner == null) {
+		scanner = new Scanner(System.in);
 		}
-		return _scanner;
+		return scanner;
 	}
 }
